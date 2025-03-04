@@ -1,0 +1,56 @@
+Aggregation
+  SUM
+  AVG
+  COUNT
+  MIN
+  MAX
+  STDEV
+  VAR
+  COVAR
+
+    E.g. SELECT vendor_id, 
+    AVG(price) AS avg_price 
+    FROM suppliers 
+    GROUP BY vendor_id 
+    ORDER BY vendor_id;
+
+CTE (Common Table Expressions)
+  WITH
+    -- First CTE
+    cte1 [(col1, col2, ...])
+
+Join type
+  INNER JOIN returns matching rows from both tables
+  FULL OUTER JOIN returns all rows from both tables
+  LEFT OUTER JOIN returns all rows from the left table and matching rows from the right table
+  RIGHT OUTER JOIN returns all rows from the right table and matching rows from the left table
+  CROSS JOIN returns the cartesian product, all possible row combinations, of the two source tables
+
+Dynamic SQL - Building SQL statements at runtime
+  Risks
+    Maintenance
+    Performance
+    SQL Injection
+
+Performance
+  CPU usage - Unoptimized queries can eat up tons of CPU.
+  RAM capacity - Sytems, optimized or not, need a good amount of RAM to run properly and quickly.
+  I/O - Needs sufficient throughput to handle most work given to it. Often times the single biggest bottleneckPoorly written queries can cause bottlenecks.
+  Network latency - SQL Ping... pray it's low.
+
+Indexing For Performance - Create and use table indexing to support your query
+  Query Plan - Breaks down a query based on units of work. 
+    Index-less table - An index-less table would consume tons of I/O if searched by a table scan. The lower the query cost, the better the performance.
+                       Primary Key's create an index, but they can also be created with the CREATE INDEX [INDEX NAME] ON [DATABASE NAME.TABLE NAME](What to index);
+
+Query Cost Estimation - Database optimizer finds lowest-cost effective exacution plan 
+  For every query, the optimizer uses system resources, but can be bypassed to save on resources by using previously saved plans
+
+Writing Performant SQL - Creating well performing, easily understandable, and easily maintainable queries.
+
+Database Design - A properly-designed database is a basis for performant queries
+  Use table aliases
+  Avoid scalar functions
+  Avoid DSQL
+  Avoid unnecessary GROUP BY and ORDER BY clauses
+Avoid CURSORs and Looking where available
